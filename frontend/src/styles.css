@@ -1,0 +1,166 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    
+
+    background-size: cover;
+    color: #333;
+  }
+  
+  .app {
+    text-align: center;
+    color: white;
+  }
+  
+  .header {
+    background: rgba(5, 107, 216, 0.789);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 30px;
+  }
+  
+  .header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .header nav ul li {
+    display: inline;
+  }
+  
+  .header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .header nav ul li a:hover {
+    color: #ffcc00; /* Highlight color on hover */
+  }
+/* src/FlightSchedule.css */
+
+.page-container {
+  padding: 20px;
+  background: url('./assets/flight-background.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow: auto;
+  color: #fff;
+}
+
+.opaque-box {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 200px;
+  margin-top: 60px;
+}
+h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.flight-table th,
+.flight-table td {
+  padding: 20px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.flight-table th {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.flight-table tbody tr {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.flight-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.track-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.track-button:hover {
+  background-color: #0056b3;
+}
+
+.flight-form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.flight-form {
+  width: 100%; /* Make the form full width */
+  max-width: 800px; /* Limit the maximum width */
+  background: rgba(255, 255, 255, 0.3); /* Blurry background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flight-form div {
+  margin-bottom: 15px;
+}
+
+.flight-form label {
+  display: block;
+  font-size: 1.1em;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.flight-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  outline: none;
+}
+
+.flight-form button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.flight-form button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.1em;
+}
