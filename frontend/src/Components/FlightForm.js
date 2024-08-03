@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
-
 function FlightForm() {
     const [flights, setFlights] = useState([]);
     const [error, setError] = useState(null);
@@ -11,8 +10,8 @@ function FlightForm() {
     const [arrival, setArrival] = useState('');
     const [scheduledTime, setScheduledTime] = useState('');
     const [flightData, setFlightData] = useState(null);
-    
-
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredFlightIds, setFilteredFlightIds] = useState([]);
     const [flightDetails, setFlightDetails] = useState(null);
     const history = useHistory();
 
@@ -28,6 +27,14 @@ function FlightForm() {
         fetchFlights();
     }, []);
 
+    useEffect(() => {
+        // Filter the flight IDs based on the search term
+        const filtered = flights.filter(flight => 
+            flight.flight_id.toLowerCase().startsWith(searchTerm.toLowerCase())
+        );
+        setFilteredFlightIds(filtered);
+    }, [searchTerm, flights]);
+
     const handleSearch = async (event) => {
         event.preventDefault();
         try {
@@ -39,6 +46,7 @@ function FlightForm() {
             setError("Flight not found");
         }
     };
+
     return (
         <div className="page-container">
             <div className="opaque-box">
@@ -75,36 +83,44 @@ function FlightForm() {
 
             {/* Flight Search Form */}
             <div className="flight-form-container">
-                
                 <form onSubmit={handleSearch} className="flight-form">
                     <div>
-                        <label>Flight ID:</label>
+                        <label>Search by Flight ID:</label>
                         <input
                             type="text"
                             value={flightId}
-                            onChange={(e) => setFlightId(e.target.value)}
+                            onChange={(e) => {
+                                setFlightId(e.target.value);
+                                setSearchTerm(e.target.value);
+                            }}
+                            list="flight-ids"
                             required
+                        />
+                        <datalist id="flight-ids">
+                            {filteredFlightIds.map(flight => (
+                                <option key={flight.flight_id} value={flight.flight_id} />
+                            ))}
+                        </datalist>
+                    </div>
+                    <div>
+                        <label>Departure:</label>
+                        <input
+                            type="text"
+                            value={departure}
+                            onChange={(e) => setDeparture(e.target.value)}
                         />
                     </div>
                     <div>
-                    <label>Departure:</label>
-                    <input
-                        type="text"
-                        value={departure}
-                        onChange={(e) => setDeparture(e.target.value)}
-                    />
+                        <label>Arrival:</label>
+                        <input
+                            type="text"
+                            value={arrival}
+                            onChange={(e) => setArrival(e.target.value)}
+                        />
                     </div>
                     <div>
-                    <label>Arrival:</label>
-                    <input
-                        type="text"
-                        value={arrival}
-                        onChange={(e) => setArrival(e.target.value)}
-                    />
-                    </div>
-                    <div>
-                    <label>Scheduled Time:</label>
-        <input type="datetime-local" value={scheduledTime} onChange={(e) => setScheduledTime(e.target.value)} />
+                        <label>Scheduled Time:</label>
+                        <input type="datetime-local" value={scheduledTime} onChange={(e) => setScheduledTime(e.target.value)} />
                     </div>
                     <button type="submit">Get Status</button>
                 </form>
